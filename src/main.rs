@@ -9,6 +9,7 @@ use rand::Rng;
 use std::fmt::Write;
 use std::fs::File;
 use std::time::Instant;
+use indicatif::{ProgressBar, ProgressStyle};
 
 #[derive(Parser)]
 struct Cli {
@@ -56,6 +57,12 @@ fn main() {
     let args = Cli::parse();
     let input_file = Path::new(&args.file);
     
+    let sty = ProgressStyle::with_template(
+        "[*] Number of zeros [{bar:40.cyan/blue}] {pos:>7}/{len:7} {msg}",
+    ).unwrap().progress_chars("##-");
+    let pb = ProgressBar::new(args.zeros.into());
+    pb.set_style(sty.clone());
+        
     let start = Instant::now();
     println!("[*] Mining the block: {}", args.file);
     let mut file_content = std::fs::read_to_string(&input_file).expect("could not read the file");
@@ -69,6 +76,7 @@ fn main() {
 
     let mut dig = String::new();
     let mut count = 0;
+    let mut max = 0;
     while find == 0{
         // Add iteration
         iter += 1;
@@ -83,14 +91,23 @@ fn main() {
 
         //Count the number of zeros
         count = count_zeros(dig.clone());
-    
-        if count > args.zeros{
+
+        // Update the progress bar
+        if count > max {
+                let inc = count - max;
+                max = count;
+                pb.inc(inc.into());
+        }
+
+        if count >= args.zeros{
             find = 1;
         }else{
-            file_content = original_content.clone();
+            file_content = original_content.clone();    
         }
     }
 
+    //pb.finish_with_message("done");
+    pb.finish_with_message("Done!");
 
     
     let mut output = File::create(&new_file).unwrap();
