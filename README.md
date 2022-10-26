@@ -38,6 +38,6 @@ De esta manera se eliminan todos los archivos no necesarios, generados al compil
 
 ## Integridad de los archivos
 
-**Cargo.toml:** 90a99203b1edd2eb1a2fe5795e9d1d7691ad448601f4f9d7a125b1199a53a3f7
+**Cargo.toml:** 1df36f3b30540dc1064b0846e50eadb6108b8aaf13dce8a5c6b8d81415ebd128 
 
-**main.rs:** 04360f977832fe32cce9b990a27c0c0a775af60afa0ca8ff04271a299197ea16
+**main.rs:** ba3ac7cf6099b6597a86c4677560dceba0c0c9560500bf4ea8639a216117af13 

@@ -116,12 +116,12 @@ fn main() {
 
 
     let end = start.elapsed();
-    println!("[*] Digest: {}", dig);
-    println!("[OK] block mined successfuly");
-    println!("\t-Number of zeros:       {}", count);
-    println!("\t-Number of iterations:  {}", iter);
-    println!("\t-Time:                  {:?}", end);
-    println!("\t-New file name:         {}", new_file);
+    println!("[OK] Block mined successfuly!");
+    println!("  -Digest:               {}", dig);
+    println!("  -Number of zeros:      {}", count);
+    println!("  -Number of iterations: {}", iter);
+    println!("  -Time:                 {:?}", end);
+    println!("  -New file name:        {}", new_file);
 
 
 }
